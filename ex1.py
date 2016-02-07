@@ -3,18 +3,22 @@ import unittest
 def has_repeats(str):
     """
     takes a string and returns True if that string has
-    repeats and False otherwise
+    repeats and False otherwise - (0)n running time
     """
-    if len(str) == 0:
-        return False
-    if len(str) == 1:
-        return False
+    #assuming that the string contains an ASCII character (of which there are 128)
+    if len(str) > 128:
+        return True
     else:
-        for char in str[1:]:
-            if str[0] == char:
+        char_dict = {}
+        for char in str:
+            char_dict[char] = False
+        for char in str:
+            if char_dict[char] == True:
                 return True
             else:
-                return has_repeats(str[1:])
+                char_dict[char] = True
+        return False
+
 
 
 
